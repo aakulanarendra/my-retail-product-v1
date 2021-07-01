@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/aakulanarendra/my-retail-product-v1.git'
+        checkout scm
       }
     }
     stage('Build') {
