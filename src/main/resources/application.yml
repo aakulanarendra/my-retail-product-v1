@@ -1,0 +1,12 @@
+---
+micronaut:
+  application:
+    name: my-retail-product
+
+---
+mongodb.uri: mongodb+srv://myretail:${MONGO_PASSWORD:jpHgTEKbcyNzC25j}@product.mjvkp.mongodb.net/product?retryWrites=true&w=majority
+
+---
+app:
+  rest:
+    product-info-read-url: https://redsky.target.com/v3/pdp/tcin

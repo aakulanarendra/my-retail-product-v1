@@ -1,0 +1,17 @@
+# Java #
+*.class
+
+# Build #
+build/
+out/
+.gradle/
+gradlew.bat
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# IDEA #
+*.iml
+.idea
