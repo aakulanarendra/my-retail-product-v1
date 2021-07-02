@@ -14,6 +14,10 @@ class ProductService @Inject constructor(
   override fun find(productID: ProductID): Product? {
     val productName = productInfoRepository.find(productID)
     val productPrice = productPriceRepository.find(productID)
+
+    if (productName == null && productPrice == null) {
+      return null
+    }
     return Product(
       productID = productID,
       name = productName,

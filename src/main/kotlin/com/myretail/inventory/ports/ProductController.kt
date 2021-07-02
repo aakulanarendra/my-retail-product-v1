@@ -2,6 +2,7 @@ package com.myretail.inventory.ports
 
 import com.myretail.inventory.domain.product.ProductID
 import com.myretail.inventory.domain.product.api.ProductService
+import io.micronaut.http.HttpResponse.notFound
 import io.micronaut.http.HttpResponse.ok
 import io.micronaut.http.MediaType
 import io.micronaut.http.MutableHttpResponse
@@ -29,7 +30,9 @@ class ProductController @Inject constructor(private val productService: ProductS
   @Tag(name = "product")
   @ExecuteOn(IO)
   fun find(@PathVariable("id") productID: ProductID): MutableHttpResponse<*> {
-    return ok(productService.find(productID)?.toRest())
+    return with(productService.find(productID)?.toRest()) {
+      this?.let { product -> ok(product) } ?: notFound()
+    }
   }
 
   @Put(consumes = [MediaType.APPLICATION_JSON])
