@@ -1,6 +1,6 @@
 applicationType: default
-defaultPackage: myretail.product.v1
-testFramework: junit
+defaultPackage: com.myretail
+testFramework: spock
 sourceLanguage: kotlin
 buildTool: gradle
-features: [app-name, docker, file-watch, file-watch-osx, gradle, http-client, junit, kotlin, kotlin-application, logback, mongo-reactive, netty-server, readme, shade, yaml]
+features: [annotation-api, app-name, gradle, http-client, kotlin, kotlin-application, logback, mongo-reactive, netty-server, openapi, reactor, readme, shade, spock, testcontainers, yaml]

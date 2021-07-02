@@ -14,6 +14,6 @@ data class Product(
 
 data class ProductPrice(
   val productID: ProductID,
-  val price: BigDecimal,
-  val currency: Currency
+  val amount: BigDecimal?,
+  val currency: Currency?
 )

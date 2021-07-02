@@ -1,11 +1,23 @@
 package com.myretail.inventory.infrastructure.mongo
 
-import com.myretail.inventory.domain.product.ProductID
+import org.bson.codecs.pojo.annotations.BsonDiscriminator
+import org.bson.codecs.pojo.annotations.BsonId
+import org.bson.codecs.pojo.annotations.BsonProperty
 import java.math.BigDecimal
-import java.util.Currency
 
+@Target(AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.SOURCE)
+annotation class NoArg
+
+@NoArg
+@BsonDiscriminator
 data class Price(
-  val productID: ProductID,
-  val value: BigDecimal,
-  val currency: Currency
-)
+  @BsonId
+  var _id: Long,
+  @BsonProperty("amount")
+  var amount: BigDecimal?,
+  @BsonProperty("currency")
+  var currency: String?
+) {
+  constructor() : this(0, BigDecimal.ZERO, "")
+}

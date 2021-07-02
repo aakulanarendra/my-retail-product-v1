@@ -1,23 +1,55 @@
 package com.myretail.inventory.infrastructure.mongo
 
-import com.mongodb.client.model.Filters
+import com.mongodb.MongoClientSettings
+import com.mongodb.client.model.Filters.eq
+import com.mongodb.client.model.Updates.combine
+import com.mongodb.client.model.Updates.set
 import com.mongodb.reactivestreams.client.MongoClient
-import com.mongodb.reactivestreams.client.MongoCollection
 import com.myretail.inventory.domain.product.ProductID
 import com.myretail.inventory.domain.product.ProductPrice
 import com.myretail.inventory.domain.product.api.ProductPriceRepository
-import org.bson.types.ObjectId
-import reactor.core.publisher.Mono
+import org.bson.codecs.configuration.CodecRegistries.fromProviders
+import org.bson.codecs.configuration.CodecRegistries.fromRegistries
+import org.bson.codecs.configuration.CodecRegistry
+import org.bson.codecs.pojo.PojoCodecProvider
 import reactor.core.publisher.toMono
 import javax.inject.Inject
-import javax.inject.Named
 
 class ProductPriceRepository @Inject constructor(
-//  @Named("product-collection") private val mongoCollection: MongoCollection<Price>
- private val mongoCollection: MongoClient
+  private val mongoClient: MongoClient
 ) : ProductPriceRepository {
-  override fun find(productId: ProductID): Mono<ProductPrice?> = mongoCollection.getDatabase("product").getCollection("price", Price::class.java)
-    .find(Filters.eq("_id", "$productId")).first()
-    .toMono()
-    .map { it.toDomain() }
+
+  private val codecRegistry: CodecRegistry = fromRegistries(
+    MongoClientSettings.getDefaultCodecRegistry(),
+    fromProviders(
+      PojoCodecProvider.builder()
+        .automatic(true)
+        .build()
+    )
+  )
+
+  override fun find(productId: ProductID): ProductPrice? =
+    getCollection()
+      .find(eq("_id", productId))
+      .first()
+      .toMono()
+      .map { it.toDomain() }
+      .block()
+
+  override fun update(productPrice: ProductPrice) {
+    with(productPrice.toMongo()) {
+      getCollection()
+        .findOneAndUpdate(
+          eq("_id", productPrice.productID),
+          combine(set("amount", amount), set("currency", currency))
+        )
+        .toMono()
+        .block()
+    }
+  }
+
+  private fun getCollection() = mongoClient
+    .getDatabase("product")
+    .getCollection("price", Price::class.java)
+
 }

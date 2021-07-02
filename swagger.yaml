@@ -1,0 +1,91 @@
+swagger: '2.0'
+info:
+  description: Returns product information.
+  version: 1.0.0
+  title: MyRetail Product
+host: https://localhost:8080
+schemes:
+  - https
+basePath: /
+paths:
+  products/{id}:
+    get:
+      operationId: find
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        default:
+          description: find default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Object'
+    put:
+      operationId: update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Product'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product:
+                  $ref: '#/components/schemas/Product'
+        required: true
+      responses:
+        default:
+          description: update default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Object'
+components:
+  schemas:
+    Object:
+      type: object
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          nullable: true
+        current_price:
+          $ref: '#/components/schemas/ProductPrice'
+    ProductPrice:
+      type: object
+      properties:
+        value:
+          type: number
+          nullable: true
+        currency_code:
+          $ref: '#/components/schemas/Currency'
+    Currency:
+      type: object
+      properties:
+        currency_code:
+          type: string
+        symbol:
+          type: string
+        default_fraction_digits:
+          type: integer
+          format: int32
+        numeric_code:
+          type: integer
+          format: int32
+        numeric_code_as_string:
+          type: string
+        display_name:
+          type: string

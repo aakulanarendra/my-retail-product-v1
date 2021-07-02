@@ -3,6 +3,29 @@ micronaut:
   application:
     name: my-retail-product
 
+  metrics:
+    enabled: true
+    export:
+      prometheus:
+        enabled: true
+        step: PT1M
+        descriptions: true
+
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+      redoc:
+        paths: classpath:META-INF/swagger/views/redoc
+        mapping: /redoc/**
+      rapidoc:
+        paths: classpath:META-INF/swagger/views/rapidoc
+        mapping: /rapidoc/**
+      swagger-ui:
+        paths: classpath:META-INF/swagger/views/swagger-ui
+        mapping: /swagger-ui/**
+
 ---
 mongodb.uri: mongodb+srv://myretail:${MONGO_PASSWORD:jpHgTEKbcyNzC25j}@product.mjvkp.mongodb.net/product?retryWrites=true&w=majority
 

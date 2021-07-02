@@ -13,6 +13,6 @@ class ProductInfoRepository @Inject constructor(
       productID,
       "taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics",
       "candidate#_blank"
-    ).toDomain()
+    )?.toDomain()
   }
 }
