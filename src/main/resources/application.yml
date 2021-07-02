@@ -11,6 +11,10 @@ micronaut:
         step: PT1M
         descriptions: true
 
+  endpoints:
+    prometheus:
+      sensitive: false
+
   router:
     static-resources:
       swagger:
@@ -33,3 +37,22 @@ mongodb.uri: mongodb+srv://myretail:${MONGO_PASSWORD:jpHgTEKbcyNzC25j}@product.m
 app:
   rest:
     product-info-read-url: https://redsky.target.com/v3/pdp/tcin
+
+  api-codes:
+    codes:
+      5000001: An intenral server error has occurred
+      5000002: A class not found exception has occurred
+      5000003: DI exception has occurred
+      5000004: Http client error occured
+      5000005: Invalid argument error occured
+      5000006: An error occurred parsing JSON
+      5000007: A null pointer error occured
+      5000008: A number format error occured
+      5000009: A socket timeout occurred
+      5000010: A timeout occurred
+      5000011: Property not intialized properly
+      5000012: An unknown routing error has occurred
+      5000013: An conversion error has occurred
+      2000001: Product ID not found
+      2000002: Invalid data provided
+      2000003: Invalid product id provided, data not available in db

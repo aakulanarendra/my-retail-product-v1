@@ -17,7 +17,7 @@ Service returns product information for provided product id and updated price in
 
 - [Open JDK 11](https://adoptopenjdk.net/)
 - [Gradle](https://docs.gradle.org/current/userguide/gradle_wrapper.html)
-- [Docker](https://docs.micronaut.io/2.5.7/api/index.html) (Optional)
+- [Docker](https://hub.docker.com) (Optional)
 
 ---
 
@@ -35,7 +35,7 @@ Service returns product information for provided product id and updated price in
 
 ## Quickstart
 
-- Pull the image `aakulanarendra/myretail:latest` from [docker hub](https://hub.docker.com/)
+- Pull the image `aakulanarendra/myretail:latest` from [docker hub](https://hub.docker.com/repository/docker/aakulanarendra/myretail)
 - Run the image
 
 ## API Documentation

@@ -47,9 +47,14 @@ dependencies {
 
   runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
   testAnnotationProcessor "io.micronaut:micronaut-inject-java"
-  testImplementation("org.junit.jupiter:junit-jupiter-api")
-  testImplementation("io.micronaut.test:micronaut-test-junit5:2.3.7")
-  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+  testImplementation "io.micronaut.test:micronaut-test-spock"
+  testImplementation "org.testcontainers:mongodb:1.15.3"
+  testImplementation("org.spockframework:spock-core") {
+    exclude group: "org.codehaus.groovy", module: "groovy-all"
+  }
+//  testImplementation("org.junit.jupiter:junit-jupiter-api")
+//  testImplementation("io.micronaut.test:micronaut-test-junit5:2.3.7")
+//  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
 
 }
 
@@ -62,11 +67,6 @@ java {
 
 noArg {
   annotation("com.codersee.annotation.NoArg")
-}
-
-// use JUnit 5 platform
-test {
-  useJUnitPlatform()
 }
 
 tasks {

@@ -13,6 +13,7 @@ annotation class NoArg
 @BsonDiscriminator
 data class Price(
   @BsonId
+  @BsonProperty("_id")
   var _id: Long,
   @BsonProperty("amount")
   var amount: BigDecimal?,

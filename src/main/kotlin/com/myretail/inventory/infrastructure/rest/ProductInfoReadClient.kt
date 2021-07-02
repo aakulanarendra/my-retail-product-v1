@@ -10,5 +10,5 @@ import io.micronaut.retry.annotation.Retryable
 interface ProductInfoReadClient {
   @Get("/{productID}")
   @Retryable
-  fun find(productID: ProductID, @QueryValue("excludes") excludes: String, @QueryValue("key") key: String): ProductInfo
+  fun find(productID: ProductID, @QueryValue("excludes") excludes: String, @QueryValue("key") key: String): ProductInfo?
 }
