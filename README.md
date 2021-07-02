@@ -11,7 +11,7 @@ Service returns product information for provided product id and updated price in
 
 ## Live Demo
 
-[Api Docs]()
+[Api Docs](http://20.186.225.154:8080/swagger-ui)
 
 ## Pre Requisites
 

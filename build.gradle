@@ -43,6 +43,7 @@ dependencies {
   compile "io.micronaut.micrometer:micronaut-micrometer-core"
   compile "io.micronaut.micrometer:micronaut-micrometer-registry-statsd"
   compile "io.micronaut:micronaut-management"
+  implementation("io.micronaut.mongodb:micronaut-mongo-sync")
 
   runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
   testAnnotationProcessor "io.micronaut:micronaut-inject-java"
