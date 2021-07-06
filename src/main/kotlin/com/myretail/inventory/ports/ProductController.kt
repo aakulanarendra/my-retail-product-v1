@@ -43,6 +43,7 @@ class ProductController @Inject constructor(private val productService: ProductS
   @ApiResponses(
     ApiResponse(responseCode = "204", description = "Successful"),
     ApiResponse(responseCode = "400", description = "Bad request"),
+    ApiResponse(responseCode = "404", description = "Product not found"),
     ApiResponse(responseCode = "500", description = "Internal server error")
   )
   @Tag(name = "product")
