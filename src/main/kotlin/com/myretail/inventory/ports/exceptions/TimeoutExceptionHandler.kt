@@ -25,6 +25,6 @@ class TimeoutExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: TimeoutException): HttpResponse<ApiError> {
     logger.error("log_type=server_error, message={}", e.message)
 
-    return serverError(ApiError(5000010, codes[5000010] ?: "Unknown error"))
+    return serverError(ApiError(5000010, "${codes[5000010]} : ${e.message ?: e.cause?.message}"))
   }
 }

@@ -25,6 +25,6 @@ class UnsatisfiedRouteExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: UnsatisfiedRouteException): HttpResponse<ApiError> {
     logger.error("log_type=bad_request, message={}", e.message)
 
-    return badRequest(ApiError(5000012, codes[5000012] ?: "Unknown error"))
+    return badRequest(ApiError(5000012, "${codes[5000012]} : ${e.message ?: e.cause?.message}"))
   }
 }

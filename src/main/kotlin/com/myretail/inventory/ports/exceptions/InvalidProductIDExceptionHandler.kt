@@ -25,6 +25,6 @@ class InvalidProductIDExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: InvalidProductIDException): HttpResponse<ApiError> {
     logger.warn("log_type=product_not_found, product_number={}", e.productId)
 
-    return notFound(ApiError(2000001, codes[2000001] ?: "Unknown error"))
+    return notFound(ApiError(2000001, "${codes[2000001]} : ${e.message ?: e.cause?.message}"))
   }
 }

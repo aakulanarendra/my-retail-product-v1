@@ -24,6 +24,6 @@ class NumberFormatExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: NumberFormatException): HttpResponse<ApiError> {
     logger.error("log_type=server_error, message={}", e.message)
 
-    return serverError(ApiError(500008, codes[500008] ?: "Unknown error"))
+    return serverError(ApiError(5000008, "${codes[5000008]} : ${e.message ?: e.cause?.message}"))
   }
 }

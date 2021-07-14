@@ -25,6 +25,6 @@ class SocketTimeoutExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: SocketTimeoutException): HttpResponse<ApiError> {
     logger.error("log_type=bad_request, message={}", e.message)
 
-    return badRequest(ApiError(500009, codes[500009] ?: "Unknown error"))
+    return badRequest(ApiError(5000009, "${codes[5000009]} : ${e.message ?: e.cause?.message}"))
   }
 }

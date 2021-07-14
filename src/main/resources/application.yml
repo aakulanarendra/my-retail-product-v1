@@ -11,10 +11,6 @@ micronaut:
         step: PT1M
         descriptions: true
 
-  endpoints:
-    prometheus:
-      sensitive: false
-
   router:
     static-resources:
       swagger:
@@ -28,7 +24,11 @@ micronaut:
         mapping: /rapidoc/**
       swagger-ui:
         paths: classpath:META-INF/swagger/views/swagger-ui
-        mapping: /swagger-ui/**
+        mapping: /
+
+endpoints:
+  prometheus:
+    sensitive: false
 
 ---
 mongodb.uri: mongodb+srv://myretail:${MONGO_PASSWORD:jpHgTEKbcyNzC25j}@product.mjvkp.mongodb.net/product?retryWrites=true&w=majority

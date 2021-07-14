@@ -28,6 +28,6 @@ class ConversionErrorExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: ConversionErrorException): HttpResponse<ApiError> {
     logger.error("log_type=server_error, message={}", e.message)
 
-    return badRequest(ApiError(5000013, "${codes[5000013]}: ${e.message}"))
+    return badRequest(ApiError(5000013, "${codes[5000013]} : ${e.message ?: e.cause?.message}"))
   }
 }

@@ -24,6 +24,6 @@ class ClassNotFoundExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: ClassNotFoundException): HttpResponse<ApiError> {
     logger.error("log_type=server_error, message={}", e.message)
 
-    return serverError(ApiError(5000002, codes[5000002] ?: "Unknown error"))
+    return serverError(ApiError(5000002, "${codes[5000002]} : ${e.message ?: e.cause?.message}"))
   }
 }

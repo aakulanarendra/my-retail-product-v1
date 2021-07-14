@@ -25,6 +25,6 @@ class InvalidDataProvidedExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: InvalidDataProvidedException): HttpResponse<ApiError> {
     logger.warn("log_type=product_not_found, product_number={}", e.productId)
 
-    return notFound(ApiError(2000002, e.message ?: "Unknown error"))
+    return notFound(ApiError(2000002, "${codes[2000002]} : ${e.message ?: e.cause?.message}"))
   }
 }

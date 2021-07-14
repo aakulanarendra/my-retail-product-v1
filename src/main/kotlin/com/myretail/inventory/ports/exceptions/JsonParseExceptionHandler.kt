@@ -25,6 +25,6 @@ class JsonParseExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: JsonParseException): HttpResponse<ApiError> {
     logger.error("log_type=bad_request, message={}", e.message)
 
-    return badRequest(ApiError(500006, codes[500006] ?: "Unknown error"))
+    return badRequest(ApiError(5000006, "${codes[5000006]} : ${e.message ?: e.cause?.message}"))
   }
 }

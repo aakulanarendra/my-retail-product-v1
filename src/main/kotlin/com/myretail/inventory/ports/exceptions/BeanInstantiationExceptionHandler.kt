@@ -25,6 +25,6 @@ class BeanInstantiationExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: BeanInstantiationException): HttpResponse<ApiError> {
     logger.error("log_type=server_error, message={}", e.message)
 
-    return serverError(ApiError(5000001, codes[5000001] ?: "Unknown error"))
+    return serverError(ApiError(5000001, "${codes[5000001]} : ${e.message ?: e.cause?.message}"))
   }
 }

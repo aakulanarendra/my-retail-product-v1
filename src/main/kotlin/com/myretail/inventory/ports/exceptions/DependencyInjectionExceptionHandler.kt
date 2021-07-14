@@ -25,6 +25,6 @@ class DependencyInjectionExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: DependencyInjectionException): HttpResponse<ApiError> {
     logger.error("log_type=server_error, message={}", e.message)
 
-    return serverError(ApiError(500003, codes[500003] ?: "Unknown error"))
+    return serverError(ApiError(5000003, "${codes[5000003]} : ${e.message ?: e.cause?.message}"))
   }
 }

@@ -82,7 +82,7 @@ class ProductControllerSpec extends Specification implements TestPropertyProvide
     productId | status                           | code
     123       | HttpStatus.NOT_FOUND             | "2000001"
     "dsfd"    | HttpStatus.BAD_REQUEST           | "5000013"
-    9623      | HttpStatus.INTERNAL_SERVER_ERROR | "500001"
+    9623      | HttpStatus.INTERNAL_SERVER_ERROR | "5000001"
   }
 
   def "should update #price for #productId"() {

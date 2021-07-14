@@ -48,7 +48,7 @@ class ProductController @Inject constructor(private val productService: ProductS
   )
   @Tag(name = "product")
   fun update(@PathVariable("id") productID: ProductID, @Body product: Product): MutableHttpResponse<Any> {
-    if (product.currentPrice?.value == null || product.currentPrice.currencyCode == null) {
+    if (product.current_price?.value == null || product.current_price.currencyCode == null) {
       throw InvalidDataProvidedException(productID)
     }
 

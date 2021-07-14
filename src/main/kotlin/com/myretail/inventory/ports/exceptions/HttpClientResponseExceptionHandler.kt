@@ -25,6 +25,6 @@ class HttpClientResponseExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: HttpClientResponseException): HttpResponse<ApiError> {
     logger.error("log_type=http_client_error, status={}, message={}", e.status, e.message)
 
-    return serverError(ApiError(500004, codes[500005] ?: "Unknown error"))
+    return serverError(ApiError(5000004, "${codes[5000004]} : ${e.message ?: e.cause?.message}"))
   }
 }

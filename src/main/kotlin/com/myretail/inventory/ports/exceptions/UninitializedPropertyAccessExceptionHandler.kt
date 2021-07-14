@@ -24,6 +24,6 @@ class UninitializedPropertyAccessExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: UninitializedPropertyAccessException): HttpResponse<ApiError> {
     logger.error("log_type=server_error, message={}", e.message)
 
-    return serverError(ApiError(5000011, codes[5000011] ?: "Unknown error"))
+    return serverError(ApiError(5000011, "${codes[5000011]} : ${e.message ?: e.cause?.message}"))
   }
 }

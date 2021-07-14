@@ -25,6 +25,6 @@ class ConstraintViolationExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: ConstraintViolationException): HttpResponse<ApiError> {
     logger.error("log_type=server_error, message={}", e.message)
 
-    return serverError(ApiError(500008, codes[500008] ?: "Unknown error"))
+    return serverError(ApiError(500008, "${codes[500008]} : ${e.message ?: e.cause?.message}"))
   }
 }

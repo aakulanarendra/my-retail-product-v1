@@ -24,6 +24,6 @@ class NullPointerExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: NullPointerException): HttpResponse<ApiError> {
     logger.error("log_type=server_error, message={}", e.message)
 
-    return serverError(ApiError(500007, codes[500007] ?: "Unknown error"))
+    return serverError(ApiError(5000007, "${codes[5000007]} : ${e.message ?: e.cause?.message}"))
   }
 }

@@ -24,6 +24,6 @@ class IllegalArgumentExceptionHandler @Inject constructor(
   override fun handle(request: HttpRequest<*>, e: IllegalArgumentException): HttpResponse<ApiError> {
     logger.error("log_type=bad_request, message={}", e.message)
 
-    return badRequest(ApiError(5000005, "${codes[5000005]}: ${e.message?:e.cause?.message}"))
+    return badRequest(ApiError(5000005, "${codes[5000005]} : ${e.message ?: e.cause?.message}"))
   }
 }
